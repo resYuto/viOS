@@ -89,7 +89,7 @@ go_long_mode:
     ;out 0x92, al
 
     ; enable SSE etc. don't need all this.
-    ; need OSXSAVE even though it makes Bochs die. QEMU seems support it.
+    ; need OSXSAVE even though it makes Bochs die. QEMU seems to support it.
     ; hard mode: they can try on a real PC and post to G+ for high-value code
     ; bonus points for using a floppy disk
     mov eax, 0x000406a3 ; OSXSAVE | OSXMMEXCPT | OSFSXR | PAE | PVI :-) | VME
@@ -113,7 +113,7 @@ go_long_mode:
     mov si, z_googl
     call print
 
-    ; protected mode time, none of our BIS fns will work after this
+    ; protected mode time, none of our BIOS fns will work after this
     mov eax, cr0
     and eax, 0xfffffffb ; clear coproc emulation
     or eax, 0x80010003  ; Paging, write protect, monitor coproc, protected mode
@@ -156,7 +156,7 @@ print_logo_row:
     mov cx, 24      ; bits per row
 .print_logo_row_loop:
     bt ebx, 0       ; is low bit 1?
-    setc al         ; sets al to i if the low bit is 1
+    setc al         ; sets al to 1 if the low bit is 1
     imul ax, ax, 42 ; multiply by 42 (produce asterisk or NUL)
     or al, 0x20     ; convert NUL to space
     mov ah, 0x0e
@@ -210,7 +210,7 @@ logo: ; vi logo bitmap
     db 0x00, 0x63, 0x00
 
 ; null-terminated strings; mostly preserved from the original
-; added goo.gl string for 20185 version given to sensitives
+; added goo.gl string for 2018 version given to sensitives
 z_boot_msg: db 0x0d, 0x0a, "VI.OS v0.5.1798", 0x0d, 0x0a, \
             "(C) '92 VITRONICS", 0x0d, 0x0a, 0
 z_halted: db "SYS_HALTED", 0

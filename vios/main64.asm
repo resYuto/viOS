@@ -22,15 +22,17 @@ main64:
     ; turn on AVX support
 	xor rcx, rcx
     xgetbv
-    or eax, 0x07 ; set more bits (0x07) if we use AVX-512
+    or eax, 0x07 ; set more bits (0xb7) if we use AVX-512
     xsetbv
 
 %ifdef TEST
     ; just use existing value
     vmovdqu xmm0, [out]
 %else
+    ; deobfuscate it
     vmovdqu xmm0, [in01]
     vmpsadbw xmm0, xmm0, [in02], 0
+    
     ; would be harder, no support in modern emulators
     ; also needs a newer version of nasm to assemble
     ;vpdpbusd xmm0, xmm1, [in02]
