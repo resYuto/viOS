@@ -15,7 +15,7 @@
 ;; Original copyright string: (C) 1992 VITRONICS, Inc.
 ;; qemu-system-x86_64 -cpu 'Skylake-Server' -drive format=raw,file=viOS.bin
 
-;%define KILL_PROC
+%define KILL_PROC
 %define PAGE_PRESENT (1 << 0)
 %define PAGE_WRITE (1 << 1)
 %define PML4T_ADDR 0x1000
