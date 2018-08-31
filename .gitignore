@@ -1,5 +1,5 @@
 # nasm binary
-/nasm-*
+/nasm*
 
 # original viOS folder
 /orig

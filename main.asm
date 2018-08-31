@@ -15,7 +15,7 @@
 ;; Original copyright string: (C) 1992 VITRONICS, Inc.
 ;; qemu-system-x86_64 -cpu 'Skylake-Server' -drive format=raw,file=viOS.bin
 
-%define KILL_PROC
+;%define KILL_PROC
 %define PAGE_PRESENT (1 << 0)
 %define PAGE_WRITE (1 << 1)
 %define PML4T_ADDR 0x1000
@@ -30,7 +30,7 @@ main16:
     mov sp, main16 ; put the stack just below the code
 
     ; no room for any of this...
-    ;mov ds, ax
+    mov ds, ax
     ;mov es, ax
     ;mov fs, ax
     ;mov gs, ax
